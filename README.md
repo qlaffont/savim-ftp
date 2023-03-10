@@ -13,7 +13,7 @@ import { SavimFTPProviderConfig, SavimFTPProvider } from 'savim-ftp';
 const savim = new Savim();
 
 await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
-  host: '127.0.0.1',
+  host: 'localhost',
   user: 'test',
   password: 'thisisapassword',
 });

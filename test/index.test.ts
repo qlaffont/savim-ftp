@@ -13,7 +13,7 @@ describe('Savim Local', () => {
     client = new Client();
 
     await client.access({
-      host: '127.0.0.1',
+      host: 'localhost',
       user: 'test',
       password: 'thisisapassword',
     });
@@ -37,7 +37,7 @@ describe('Savim Local', () => {
     expect(Object.keys(savim.providers)).toHaveLength(0);
 
     await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
-      host: '127.0.0.1',
+      host: 'localhost',
       user: 'test',
       password: 'thisisapassword',
     });
@@ -51,7 +51,7 @@ describe('Savim Local', () => {
     const savim = new Savim();
 
     await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
-      host: '127.0.0.1',
+      host: 'localhost',
       user: 'test',
       password: 'thisisapassword',
     });
@@ -74,7 +74,7 @@ describe('Savim Local', () => {
     const savim = new Savim();
 
     await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
-      host: '127.0.0.1',
+      host: 'localhost',
       user: 'test',
       password: 'thisisapassword',
     });
@@ -97,7 +97,7 @@ describe('Savim Local', () => {
     const savim = new Savim();
 
     await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
-      host: '127.0.0.1',
+      host: 'localhost',
       user: 'test',
       password: 'thisisapassword',
     });
@@ -124,7 +124,7 @@ describe('Savim Local', () => {
     const savim = new Savim();
 
     await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
-      host: '127.0.0.1',
+      host: 'localhost',
       user: 'test',
       password: 'thisisapassword',
     });
@@ -146,7 +146,7 @@ describe('Savim Local', () => {
     const savim = new Savim();
 
     await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
-      host: '127.0.0.1',
+      host: 'localhost',
       user: 'test',
       password: 'thisisapassword',
     });
