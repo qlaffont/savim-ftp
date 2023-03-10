@@ -16,6 +16,15 @@ jobs:
         node: ["16.x", "18.x"]
         os: [ubuntu-latest]
 
+    services:
+      ftp:
+        image: delfer/alpine-ftp-server
+        env:
+          USERS: "test|thisisapassword"
+        ports:
+          - 21:21
+          - 21000-21010:21000-21010
+
     steps:
       - uses: dorny/paths-filter@v2
         id: changes
