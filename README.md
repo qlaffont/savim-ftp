@@ -1,4 +1,4 @@
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6578843ddab3ca0a2cff/test_coverage)](https://codeclimate.com/github/flexper/savim-ftp/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/6578843ddab3ca0a2cff/maintainability)](https://codeclimate.com/github/flexper/savim-ftp/maintainability) ![npm](https://img.shields.io/npm/v/savim-ftp) ![npm](https://img.shields.io/npm/dm/savim-ftp) ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/savim-ftp) ![NPM](https://img.shields.io/npm/l/savim-ftp)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1ceadff5f5ef77b2e8b6/test_coverage)](https://codeclimate.com/github/flexper/savim-ftp/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/1ceadff5f5ef77b2e8b6/maintainability)](https://codeclimate.com/github/flexper/savim-ftp/maintainability) ![npm](https://img.shields.io/npm/v/savim-ftp) ![npm](https://img.shields.io/npm/dm/savim-ftp) ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/savim-ftp) ![NPM](https://img.shields.io/npm/l/savim-ftp)
 
 # savim-ftp
 
