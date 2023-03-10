@@ -1,0 +1,60 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: ['16.x', '18.x']
+        os: [ubuntu-latest, macOS-latest]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 6.0.2
+
+      - name: Install deps and build (with cache)
+        run: pnpm install  --no-frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Test
+        run: chmod -R 777 test && pnpm test -- --ci --coverage --maxWorkers=2
+        env:
+          LOCAL_APIKEY: ${{ secrets.LOCAL_APIKEY }}
+
+      - name: Build
+        run: pnpm build
+
+  coverage:
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 6.0.2
+      - run: pnpm install --no-frozen-lockfile
+      - run: chmod -R 777 test && pnpm test
+        env:
+          LOCAL_APIKEY: ${{ secrets.LOCAL_APIKEY }}
+      - uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          debug: true

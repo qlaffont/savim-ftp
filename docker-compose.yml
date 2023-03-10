@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  ftp:
+    image: delfer/alpine-ftp-server
+    environment:
+      USERS: "test|thisisapassword"
+    ports:
+      - "21000-21010:21000-21010"
+      - "21:21"
