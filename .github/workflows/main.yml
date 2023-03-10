@@ -14,7 +14,7 @@ jobs:
       ftp:
         image: delfer/alpine-ftp-server
         env:
-          USERS: "test|thisisapassword"
+          USERS: test|thisisapassword
         ports:
           - 21:21
           - 21000-21010:21000-21010
