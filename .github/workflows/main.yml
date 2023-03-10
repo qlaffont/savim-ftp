@@ -40,7 +40,7 @@ jobs:
         run: pnpm lint
 
       - name: Test
-        run: sleep 5 && pnpm test -- --ci --coverage --maxWorkers=2
+        run: sleep 5 && pnpm test
         env:
           LOCAL_APIKEY: ${{ secrets.LOCAL_APIKEY }}
 

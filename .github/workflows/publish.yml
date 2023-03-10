@@ -64,7 +64,7 @@ jobs:
 
       - name: Test
         if: steps.changes.outputs.src == 'true'
-        run: sleep 5 && pnpm test -- --ci --coverage --maxWorkers=2
+        run: sleep 5 && pnpm test
         env:
           LOCAL_APIKEY: ${{ secrets.LOCAL_APIKEY }}
 
