@@ -40,7 +40,7 @@ jobs:
         run: pnpm lint
 
       - name: Test
-        run: chmod -R 777 test && pnpm test -- --ci --coverage --maxWorkers=2
+        run: pnpm test -- --ci --coverage --maxWorkers=2
         env:
           LOCAL_APIKEY: ${{ secrets.LOCAL_APIKEY }}
 
@@ -67,7 +67,7 @@ jobs:
         with:
           version: 6.0.2
       - run: pnpm install --no-frozen-lockfile
-      - run: chmod -R 777 test && pnpm test
+      - run: pnpm test
         env:
           LOCAL_APIKEY: ${{ secrets.LOCAL_APIKEY }}
       - uses: paambaati/codeclimate-action@v3.2.0
