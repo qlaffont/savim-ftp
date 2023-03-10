@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { Client } from 'basic-ftp';
 import { Savim } from 'savim';
 import { Readable } from 'stream';
@@ -8,7 +8,7 @@ import { SavimFTPProvider, SavimFTPProviderConfig, StringWriter } from '../src';
 describe('Savim Local', () => {
   let client: Client;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     jest.clearAllMocks();
     client = new Client();
 
@@ -17,6 +17,10 @@ describe('Savim Local', () => {
       user: 'test',
       password: 'thisisapassword',
     });
+  });
+
+  afterAll(async () => {
+    client.close();
   });
 
   it('should be Defined', () => {
