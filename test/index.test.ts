@@ -1,9 +1,36 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { Client } from 'basic-ftp';
 import { Savim } from 'savim';
 import { Readable } from 'stream';
 
 import { SavimFTPProvider, SavimFTPProviderConfig, StringWriter } from '../src';
+
+jest.mock('basic-ftp', () => {
+  return {
+    Client: jest.fn().mockImplementation(() => {
+      return {
+        //@ts-ignore
+        access: () => {
+          if (process.env.ERROR === 'true') {
+            throw new Error('connect error');
+          }
+
+          return true;
+        },
+        list: () => true,
+        //@ts-ignore
+        downloadTo: (buf) => {
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          buf._write(Buffer.from('test'), 't', () => {});
+        },
+        uploadFrom: jest.fn(),
+        remove: jest.fn(),
+        close: jest.fn(),
+      };
+    }),
+  };
+});
 
 describe('Savim Local', () => {
   let client: Client;
@@ -34,7 +61,9 @@ describe('Savim Local', () => {
   it('should be able to add provider', async () => {
     const savim = new Savim();
 
+    process.env.ERROR = 'true';
     await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {});
+    process.env.ERROR = 'false';
 
     expect(savim).toBeDefined();
     expect(savim.providers).toBeDefined();
