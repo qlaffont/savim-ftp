@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -79,6 +79,6 @@
   },
   "dependencies": {
     "basic-ftp": "^5.0.2",
-    "savim": "^1.0.2"
+    "savim": "^1.1.1"
   }
 }

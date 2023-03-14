@@ -1,4 +1,5 @@
 import { AccessOptions, Client, UploadOptions } from 'basic-ftp';
+import { join } from 'path';
 import { SavimProviderInterface } from 'savim';
 import { Readable, Stream } from 'stream';
 
@@ -57,6 +58,27 @@ export class SavimFTPProvider implements SavimProviderInterface {
 
   async deleteFile(filenameWithPath: string) {
     await this.client.remove(filenameWithPath);
+  }
+
+  async createFolder(filenameWithPath: string) {
+    await this.client.ensureDir(filenameWithPath);
+    await this.client.ensureDir('~');
+  }
+
+  async deleteFolder(filenameWithPath: string) {
+    await this.client.removeDir(filenameWithPath);
+  }
+
+  async getFolders(path: string): Promise<string[]> {
+    return (await this.client.list(path))
+      .filter((v) => v.isDirectory === true)
+      .map((v) => join(path, v.name));
+  }
+
+  async getFiles(path: string): Promise<string[]> {
+    return (await this.client.list(path))
+      .filter((v) => v.isFile === true)
+      .map((v) => join(path, v.name));
   }
 }
 

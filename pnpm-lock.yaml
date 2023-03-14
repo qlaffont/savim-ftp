@@ -16,7 +16,7 @@ specifiers:
   jest: ^29.4.3
   np: 7.6.3
   prettier: 2.8.4
-  savim: ^1.0.2
+  savim: ^1.1.1
   size-limit: 8.2.4
   ts-jest: ^29.0.5
   tsdx: 0.14.1
@@ -25,7 +25,7 @@ specifiers:
 
 dependencies:
   basic-ftp: 5.0.2
-  savim: 1.0.2
+  savim: 1.1.1
 
 devDependencies:
   '@jest/globals': 29.5.0
@@ -8795,8 +8795,8 @@ packages:
       - supports-color
     dev: true
 
-  /savim/1.0.2:
-    resolution: {integrity: sha512-WhbvRhoE5rAFEsMK8YItRnVKvkpO0gorF2AtkBFWRP3wRD6OOdBSEtHw6l1W6ZIjJXfm5cTFo+S7j6Nja91MTQ==}
+  /savim/1.1.1:
+    resolution: {integrity: sha512-v73SaedxgajZo/hOsbH16wAxP0ZRP888JbUrwF+iCxbhCQ5lNeab+JEs7nrwjPor/BCYheGctRNV78DOkJHV0Q==}
     engines: {node: '>=10'}
     dependencies:
       '@types/node': 18.15.0

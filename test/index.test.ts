@@ -18,7 +18,6 @@ jest.mock('basic-ftp', () => {
 
           return true;
         },
-        list: () => true,
         //@ts-ignore
         downloadTo: (buf) => {
           // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -27,6 +26,27 @@ jest.mock('basic-ftp', () => {
         uploadFrom: jest.fn(),
         remove: jest.fn(),
         close: jest.fn(),
+        ensureDir: jest.fn(),
+        removeDir: jest.fn(),
+        list: jest.fn().mockImplementation(() => {
+          if (process.env.CREATE_FOLDER === 'true') {
+            return [
+              { name: 'foldertocreate', isDirectory: true, isFile: false },
+            ];
+          }
+
+          if (process.env.LIST_FILE === 'true') {
+            return [
+              { name: 'foldertonotlist', isDirectory: true, isFile: false },
+              { name: 'filetolist.txt', isDirectory: false, isFile: true },
+            ];
+          }
+
+          return [
+            { name: 'foldertolist', isDirectory: true, isFile: false },
+            { name: 'filetonotlist.txt', isDirectory: false, isFile: true },
+          ];
+        }),
       };
     }),
   };
@@ -201,5 +221,100 @@ describe('Savim Local', () => {
       expect('test').toThrow();
       // eslint-disable-next-line no-empty
     } catch (error) {}
+  });
+
+  it('should be able to create folder', async () => {
+    const savim = new Savim();
+
+    await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
+      host: 'localhost',
+      user: 'test',
+      password: 'thisisapassword',
+    });
+
+    const folderName = 'foldertocreate';
+
+    process.env.CREATE_FOLDER = 'true';
+    await savim.createFolder(folderName);
+
+    expect(
+      (await client.list()).find((i) => i.name === folderName && i.isDirectory),
+    ).toBeDefined();
+    process.env.CREATE_FOLDER = 'false';
+
+    await client.removeDir(folderName);
+  });
+
+  it('should be able to delete folder', async () => {
+    const savim = new Savim();
+
+    await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
+      host: 'localhost',
+      user: 'test',
+      password: 'thisisapassword',
+    });
+
+    const folderName = 'foldertodelete';
+
+    await client.ensureDir(folderName);
+
+    await savim.deleteFolder(folderName);
+
+    expect(
+      (await client.list()).find((i) => i.name === folderName && i.isDirectory),
+    ).not.toBeDefined();
+  });
+
+  it('should be able to list folder', async () => {
+    const savim = new Savim();
+
+    await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
+      host: 'localhost',
+      user: 'test',
+      password: 'thisisapassword',
+    });
+
+    const folderName = 'foldertolist';
+    const fileName = 'filetonotlist.txt';
+
+    await client.ensureDir(folderName);
+    await client.ensureDir('~');
+
+    await client.uploadFrom(
+      Readable.from(Buffer.from('test', 'utf8')),
+      fileName,
+    );
+
+    expect(await savim.getFolders(`~`)).toEqual(['~/foldertolist']);
+
+    await client.removeDir(folderName);
+    await client.remove(fileName);
+  });
+
+  it('should be able to list files', async () => {
+    const savim = new Savim();
+
+    await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
+      host: 'localhost',
+      user: 'test',
+      password: 'thisisapassword',
+    });
+
+    const folderName = 'foldertonotlist';
+    const fileName = 'filetolist.txt';
+
+    await client.ensureDir(folderName);
+    await client.ensureDir('~');
+
+    await client.uploadFrom(
+      Readable.from(Buffer.from('test', 'utf8')),
+      fileName,
+    );
+    process.env.LIST_FILE = 'true';
+    expect(await savim.getFiles(`~`)).toEqual(['~/filetolist.txt']);
+    process.env.LIST_FILE = 'false';
+
+    await client.removeDir(folderName);
+    await client.remove(fileName);
   });
 });
