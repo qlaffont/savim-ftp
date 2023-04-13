@@ -118,7 +118,7 @@ describe('Savim Local', () => {
 
     await client.downloadTo(buf, fileName);
 
-    expect(buf.getText()).toEqual(fileContent);
+    expect(buf.getText()).toEqual(Buffer.from(fileContent).toString('base64'));
 
     await client.remove(fileName);
   });
@@ -141,7 +141,7 @@ describe('Savim Local', () => {
 
     await client.downloadTo(buf, fileName);
 
-    expect(buf.getText()).toEqual(fileContent);
+    expect(buf.getText()).toEqual(Buffer.from(fileContent).toString('base64'));
 
     await client.remove(fileName);
   });
@@ -168,7 +168,7 @@ describe('Savim Local', () => {
 
     await client.downloadTo(buf, fileName);
 
-    expect(buf.getText()).toEqual(fileContent);
+    expect(buf.getText()).toEqual(Buffer.from(fileContent).toString('base64'));
 
     await client.remove(fileName);
   });
@@ -190,7 +190,12 @@ describe('Savim Local', () => {
       fileName,
     );
 
-    expect(await savim.getFile(fileName)).toEqual(fileContent);
+    expect(
+      Buffer.from(
+        (await savim.getFile(fileName)) as string,
+        'base64',
+      ).toString(),
+    ).toEqual(fileContent);
 
     await client.remove(fileName);
   });

@@ -103,6 +103,6 @@ export class StringWriter extends Writable {
   }
 
   getText() {
-    return this.buf.toString('utf8');
+    return this.buf.toString('base64');
   }
 }
