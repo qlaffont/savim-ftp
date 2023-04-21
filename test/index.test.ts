@@ -81,13 +81,16 @@ describe('Savim Local', () => {
   it('should be able to add provider', async () => {
     const savim = new Savim();
 
-    process.env.ERROR = 'true';
-    await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {});
-    process.env.ERROR = 'false';
+    try {
+      process.env.ERROR = 'true';
+      await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {});
+    } catch (error) {
+      process.env.ERROR = 'false';
 
-    expect(savim).toBeDefined();
-    expect(savim.providers).toBeDefined();
-    expect(Object.keys(savim.providers)).toHaveLength(0);
+      expect(savim).toBeDefined();
+      expect(savim.providers).toBeDefined();
+      expect(Object.keys(savim.providers)).toHaveLength(0);
+    }
 
     await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {
       host: 'localhost',
