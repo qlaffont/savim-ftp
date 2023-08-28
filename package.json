@@ -29,15 +29,15 @@
     "access": "public"
   },
   "name": "savim-ftp",
-  "author": "flexper",
+  "author": "qlaffont",
   "module": "dist/savim-ftp.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/flexper/savim-ftp.git"
+    "url": "https://github.com/qlaffont/savim-ftp.git"
   },
   "bugs": {
-    "url": "https://github.com/flexper/savim-ftp/issues",
-    "email": "contact@flexper.fr"
+    "url": "https://github.com/qlaffont/savim-ftp/issues",
+    "email": "contact@qlaffont.com"
   },
   "size-limit": [
     {
