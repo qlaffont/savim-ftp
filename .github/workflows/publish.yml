@@ -26,7 +26,7 @@ jobs:
           - 21000-21010:21000-21010
 
     steps:
-      - uses: dorny/paths-filter@v2
+      - uses: dorny/paths-filter@v3
         id: changes
         with:
           filters: |
