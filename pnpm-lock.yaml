@@ -7,7 +7,7 @@ settings:
 dependencies:
   basic-ftp:
     specifier: ^5.0.2
-    version: 5.0.2
+    version: 5.0.4
   savim:
     specifier: ^1.2.0
     version: 1.2.1
@@ -3431,8 +3431,8 @@ packages:
       pascalcase: 0.1.1
     dev: true
 
-  /basic-ftp@5.0.2:
-    resolution: {integrity: sha512-NgkBwqp7rkhIUBaxLwL601lvUuBUvShJocrLYdiyTsH1WeP/wofMdooZ4p6hz+4hqiU59PBOj0EkaqELwFJLuQ==}
+  /basic-ftp@5.0.4:
+    resolution: {integrity: sha512-8PzkB0arJFV4jJWSGOYR+OEic6aeKMu/osRhBULN6RY0ykby6LKhbmuQ5ublvaas5BOwboah5D87nrHyuh8PPA==}
     engines: {node: '>=10.0.0'}
     dev: false
 
