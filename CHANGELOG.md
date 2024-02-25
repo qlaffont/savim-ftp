@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.96 (2024-02-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency basic-ftp to v5.0.4 ([61f73d4](https://github.com/qlaffont/savim-ftp/commit/61f73d4e8c1ce2fc7bf32bae070c41c530cc75aa))
+
 ### 1.1.95 (2024-02-25)
 
 ### 1.1.94 (2024-02-24)
