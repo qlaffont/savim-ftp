@@ -10,7 +10,7 @@ dependencies:
     version: 5.0.5
   savim:
     specifier: ^1.2.0
-    version: 1.2.115
+    version: 1.2.116
 
 devDependencies:
   '@jest/globals':
@@ -8742,7 +8742,7 @@ packages:
       quick-format-unescaped: 4.0.4
       real-require: 0.2.0
       safe-stable-stringify: 2.4.3
-      sonic-boom: 3.8.0
+      sonic-boom: 3.8.1
       thread-stream: 2.4.1
     dev: false
 
@@ -9460,8 +9460,8 @@ packages:
       - supports-color
     dev: true
 
-  /savim@1.2.115:
-    resolution: {integrity: sha512-gkrIckZiRloyNd8+n1VDToG2fSlRhTsxnsKuZQyjmWSNEPznjsOC5mANcXDQiuW/mPxwwD9gfD0jcM19w2AyKg==}
+  /savim@1.2.116:
+    resolution: {integrity: sha512-hOALBwOgO464LpM1sk9qyo8mxVhWQFtwiGC20iPifQjIm0MYPtI/FAIvT6JfwLUcscLgzHzwWQ8iVHEgdepcNw==}
     engines: {node: '>=10'}
     dependencies:
       '@types/node': 20.12.4
@@ -9695,8 +9695,8 @@ packages:
       - supports-color
     dev: true
 
-  /sonic-boom@3.8.0:
-    resolution: {integrity: sha512-ybz6OYOUjoQQCQ/i4LU8kaToD8ACtYP+Cj5qd2AO36bwbdewxWJ3ArmJ2cr6AvxlL2o0PqnCcPGUgkILbfkaCA==}
+  /sonic-boom@3.8.1:
+    resolution: {integrity: sha512-y4Z8LCDBuum+PBP3lSV7RHrXscqksve/bi0as7mhwVnBW+/wUqKT/2Kb7um8yqcFy0duYbbPxzt89Zy2nOCaxg==}
     dependencies:
       atomic-sleep: 1.0.0
     dev: false
