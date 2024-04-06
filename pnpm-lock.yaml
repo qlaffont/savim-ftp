@@ -10,7 +10,7 @@ dependencies:
     version: 5.0.5
   savim:
     specifier: ^1.2.0
-    version: 1.2.117
+    version: 1.2.118
 
 devDependencies:
   '@jest/globals':
@@ -8729,8 +8729,8 @@ packages:
     resolution: {integrity: sha512-cHjPPsE+vhj/tnhCy/wiMh3M3z3h/j15zHQX+S9GkTBgqJuTuJzYJ4gUyACLhDaJ7kk9ba9iRDmbH2tJU03OiA==}
     dev: false
 
-  /pino@8.19.0:
-    resolution: {integrity: sha512-oswmokxkav9bADfJ2ifrvfHUwad6MLp73Uat0IkQWY3iAw5xTRoznXbXksZs8oaOUMpmhVWD+PZogNzllWpJaA==}
+  /pino@8.20.0:
+    resolution: {integrity: sha512-uhIfMj5TVp+WynVASaVEJFTncTUe4dHBq6CWplu/vBgvGHhvBvQfxz+vcOrnnBQdORH3izaGEurLfNlq3YxdFQ==}
     hasBin: true
     dependencies:
       atomic-sleep: 1.0.0
@@ -9460,12 +9460,12 @@ packages:
       - supports-color
     dev: true
 
-  /savim@1.2.117:
-    resolution: {integrity: sha512-NL8jdUY5u74bedSI124a6L/lVNv3Xh9v+OhhLMf/WywXMrb/RQbztDOq5UwO5jGA69Nnq0VJHnKxzu9s9d38hw==}
+  /savim@1.2.118:
+    resolution: {integrity: sha512-+94thVRmTN4f0g9djrXhZ2MUSh0OXcV3y3cuqPCj5ty9OhpoL2fBfqK8Jpb/FCMmsnhL/aqW0Fyfp0OjFDBn9g==}
     engines: {node: '>=10'}
     dependencies:
       '@types/node': 20.12.5
-      pino: 8.19.0
+      pino: 8.20.0
     dev: false
 
   /saxes@3.1.11:
