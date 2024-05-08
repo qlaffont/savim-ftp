@@ -13,7 +13,7 @@ importers:
         version: 5.0.5
       savim:
         specifier: ^1.2.0
-        version: 1.2.134
+        version: 1.2.135
     devDependencies:
       '@jest/globals':
         specifier: 29.7.0
@@ -4635,8 +4635,8 @@ packages:
     deprecated: some dependency vulnerabilities fixed, support for node < 10 dropped, and newer ECMAScript syntax/features added
     hasBin: true
 
-  savim@1.2.134:
-    resolution: {integrity: sha512-qoROt5Hg4CdkjmZUddukzv6ZZ5lpubHvhlByhoKukQOczpbwlpBFHN9M8Z/OFuqU5sRzrCFjh1hEU3u6BgO/Jw==}
+  savim@1.2.135:
+    resolution: {integrity: sha512-FmyH8z2nOaSss8c+eyKKuBjfDglrXkhLOIwAtq+d+9h4CmdeXn5H9Ugqg5vhfsJb7hGdqYia90ZqisK7OvZzLw==}
     engines: {node: '>=10'}
 
   saxes@3.1.11:
@@ -11308,7 +11308,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  savim@1.2.134:
+  savim@1.2.135:
     dependencies:
       '@types/node': 20.12.11
       pino: 9.0.0
