@@ -15,10 +15,7 @@
     "build": "tsdx build",
     "test": "jest --forceExit",
     "lint": "eslint src test --fix",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
-    "np": "np"
+    "prepare": "tsdx build"
   },
   "husky": {
     "hooks": {
@@ -39,16 +36,6 @@
     "url": "https://github.com/qlaffont/savim-ftp/issues",
     "email": "contact@qlaffont.com"
   },
-  "size-limit": [
-    {
-      "path": "dist/savim-ftp.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/savim-ftp.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "jest": {
     "collectCoverage": true,
     "coverageReporters": [
@@ -58,7 +45,6 @@
   },
   "devDependencies": {
     "@jest/globals": "29.7.0",
-    "@size-limit/preset-small-lib": "11.1.4",
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "7.16.0",
     "@typescript-eslint/parser": "7.16.0",
@@ -69,9 +55,7 @@
     "eslint-plugin-simple-import-sort": "12.1.1",
     "husky": "9.0.11",
     "jest": "^29.4.3",
-    "np": "10.0.6",
     "prettier": "3.3.3",
-    "size-limit": "11.1.4",
     "ts-jest": "^29.0.5",
     "tsdx": "0.14.1",
     "tslib": "2.6.3",
