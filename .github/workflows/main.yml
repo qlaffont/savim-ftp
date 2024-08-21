@@ -70,7 +70,7 @@ jobs:
       - run: sleep 5 && pnpm test
         env:
           LOCAL_APIKEY: ${{ secrets.LOCAL_APIKEY }}
-      - uses: paambaati/codeclimate-action@v8.0.0
+      - uses: paambaati/codeclimate-action@v9.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
