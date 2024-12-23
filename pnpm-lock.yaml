@@ -13,7 +13,7 @@ importers:
         version: 5.0.5
       savim:
         specifier: ^1.2.0
-        version: 1.2.207
+        version: 1.2.208
     devDependencies:
       '@jest/globals':
         specifier: 29.7.0
@@ -3441,8 +3441,8 @@ packages:
   pino-std-serializers@7.0.0:
     resolution: {integrity: sha512-e906FRY0+tV27iq4juKzSYPbUj2do2X2JX4EzSca1631EB2QJQUqGbDuERal7LCtOpxl6x3+nvo9NPZcmjkiFA==}
 
-  pino@9.5.0:
-    resolution: {integrity: sha512-xSEmD4pLnV54t0NOUN16yCl7RIB1c5UUOse5HSyEXtBp+FgFQyPeDutc+Q2ZO7/22vImV7VfEjH/1zV2QuqvYw==}
+  pino@9.6.0:
+    resolution: {integrity: sha512-i85pKRCt4qMjZ1+L7sy2Ag4t1atFcdbEt76+7iRJn1g2BvsnRMGu9p8pivl9fs63M2kF/A0OacFZhTub+m/qMg==}
     hasBin: true
 
   pirates@4.0.5:
@@ -3777,8 +3777,8 @@ packages:
     deprecated: some dependency vulnerabilities fixed, support for node < 10 dropped, and newer ECMAScript syntax/features added
     hasBin: true
 
-  savim@1.2.207:
-    resolution: {integrity: sha512-DVa3OqZXe7swg0gC79720456BqKGY0buR2vLTfcJ069Hv4sjm0He2bUXd/D2y1SCs5rbrQgFEL80fuVI5cuvwQ==}
+  savim@1.2.208:
+    resolution: {integrity: sha512-XhLcr2ZiVhghi9R9IA+/wOn+R0b0IqtPMFxADqShQOGaX+5QW851TauCStUZ+ekQcximBts6SMfLkuOSiESymw==}
     engines: {node: '>=10'}
 
   saxes@3.1.11:
@@ -9122,7 +9122,7 @@ snapshots:
 
   pino-std-serializers@7.0.0: {}
 
-  pino@9.5.0:
+  pino@9.6.0:
     dependencies:
       atomic-sleep: 1.0.0
       fast-redact: 3.5.0
@@ -9481,10 +9481,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  savim@1.2.207:
+  savim@1.2.208:
     dependencies:
       '@types/node': 20.14.10
-      pino: 9.5.0
+      pino: 9.6.0
 
   saxes@3.1.11:
     dependencies:
