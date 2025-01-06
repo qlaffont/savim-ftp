@@ -13,7 +13,7 @@ importers:
         version: 5.0.5
       savim:
         specifier: ^1.2.0
-        version: 1.2.209
+        version: 1.2.210
     devDependencies:
       '@jest/globals':
         specifier: 29.7.0
@@ -3490,8 +3490,8 @@ packages:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  process-warning@4.0.0:
-    resolution: {integrity: sha512-/MyYDxttz7DfGMMHiysAsFE4qF+pQYAA8ziO/3NcRVrQ5fSk+Mns4QZA/oRPFzvcqNoVJXQNWNAsdwBXLUkQKw==}
+  process-warning@4.0.1:
+    resolution: {integrity: sha512-3c2LzQ3rY9d0hc1emcsHhfT9Jwz0cChib/QN89oME2R451w5fy3f0afAhERFZAwrbDU43wk12d0ORBpDVME50Q==}
 
   progress-estimator@0.2.2:
     resolution: {integrity: sha512-GF76Ac02MTJD6o2nMNtmtOFjwWCnHcvXyn5HOWPQnEMO8OTLw7LAvNmrwe8LmdsB+eZhwUu9fX/c9iQnBxWaFA==}
@@ -3777,8 +3777,8 @@ packages:
     deprecated: some dependency vulnerabilities fixed, support for node < 10 dropped, and newer ECMAScript syntax/features added
     hasBin: true
 
-  savim@1.2.209:
-    resolution: {integrity: sha512-IgWOiRoueyu9nwUFmWxycyqp01SJviwVL5as8KDj+UtAYTrYE89XVCA+ONFpqTV7qAIJyeDXxrKn6knBE1bejw==}
+  savim@1.2.210:
+    resolution: {integrity: sha512-s0TZj6yNezGS49ZBUW/Qw7OdUJNYI2LwzVlJgrsObAyqgqcbv77876m1vUDPtuotkKcoDc4LbET9d57lFxm9EA==}
     engines: {node: '>=10'}
 
   saxes@3.1.11:
@@ -9129,7 +9129,7 @@ snapshots:
       on-exit-leak-free: 2.1.2
       pino-abstract-transport: 2.0.0
       pino-std-serializers: 7.0.0
-      process-warning: 4.0.0
+      process-warning: 4.0.1
       quick-format-unescaped: 4.0.4
       real-require: 0.2.0
       safe-stable-stringify: 2.5.0
@@ -9171,7 +9171,7 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 18.1.0
 
-  process-warning@4.0.0: {}
+  process-warning@4.0.1: {}
 
   progress-estimator@0.2.2:
     dependencies:
@@ -9481,7 +9481,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  savim@1.2.209:
+  savim@1.2.210:
     dependencies:
       '@types/node': 20.14.10
       pino: 9.6.0
