@@ -62,7 +62,7 @@
     "typescript": "5.5.3"
   },
   "dependencies": {
-    "basic-ftp": "^5.0.2",
+    "basic-ftp": "^5.2.0",
     "savim": "^1.2.0"
   }
 }
