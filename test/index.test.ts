@@ -1,16 +1,14 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, mock } from 'bun:test';
 import { Client } from 'basic-ftp';
 import { Savim } from 'savim';
 import { Readable } from 'stream';
 
 import { SavimFTPProvider, SavimFTPProviderConfig, StringWriter } from '../src';
 
-jest.mock('basic-ftp', () => {
+mock.module('basic-ftp', () => {
   return {
-    Client: jest.fn().mockImplementation(() => {
+    Client: mock().mockImplementation(() => {
       return {
-        //@ts-ignore
         access: () => {
           if (process.env.ERROR === 'true') {
             throw new Error('connect error');
@@ -18,17 +16,15 @@ jest.mock('basic-ftp', () => {
 
           return true;
         },
-        //@ts-ignore
-        downloadTo: (buf) => {
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          buf._write(Buffer.from('test'), 't', () => {});
+        downloadTo: (buf: StringWriter) => {
+          buf._write(Buffer.from('test'), 'utf8', () => {});
         },
-        uploadFrom: jest.fn(),
-        remove: jest.fn(),
-        close: jest.fn(),
-        ensureDir: jest.fn(),
-        removeDir: jest.fn(),
-        list: jest.fn().mockImplementation(() => {
+        uploadFrom: mock(),
+        remove: mock(),
+        close: mock(),
+        ensureDir: mock(),
+        removeDir: mock(),
+        list: mock().mockImplementation(() => {
           if (process.env.CREATE_FOLDER === 'true') {
             return [
               { name: 'foldertocreate', isDirectory: true, isFile: false },
@@ -52,11 +48,11 @@ jest.mock('basic-ftp', () => {
   };
 });
 
-describe('Savim Local', () => {
+describe('Savim FTP', () => {
   let client: Client;
 
   beforeAll(async () => {
-    jest.clearAllMocks();
+    mock.restore();
     client = new Client();
 
     await client.access({
@@ -84,7 +80,7 @@ describe('Savim Local', () => {
     try {
       process.env.ERROR = 'true';
       await savim.addProvider<SavimFTPProviderConfig>(SavimFTPProvider, {});
-    } catch (error) {
+    } catch (_error) {
       process.env.ERROR = 'false';
 
       expect(savim).toBeDefined();
@@ -227,8 +223,7 @@ describe('Savim Local', () => {
 
       await client.downloadTo(buf, fileName);
       expect('test').toThrow();
-      // eslint-disable-next-line no-empty
-    } catch (error) {}
+    } catch (_error) {}
   });
 
   it('should be able to create folder', async () => {
@@ -324,5 +319,31 @@ describe('Savim Local', () => {
 
     await client.removeDir(folderName);
     await client.remove(fileName);
+  });
+
+  it('StringWriter should handle Buffer chunks', () => {
+    const writer = new StringWriter();
+    let callbackError: Error | null = new Error('not called');
+
+    writer._write(Buffer.from('hello'), 'utf8', (err) => {
+      callbackError = err;
+    });
+
+    expect(callbackError).toBeNull();
+    expect(writer.getText()).toEqual(Buffer.from('hello').toString('base64'));
+  });
+
+  it('StringWriter should error on non-Buffer chunks', () => {
+    const writer = new StringWriter();
+    let callbackError: Error | null | undefined;
+
+    writer._write('not-a-buffer', 'utf8', (err) => {
+      callbackError = err ?? undefined;
+    });
+
+    expect(callbackError).toBeInstanceOf(Error);
+    expect((callbackError as Error)?.message).toBe(
+      "StringWriter expects chunks of type 'Buffer'.",
+    );
   });
 });

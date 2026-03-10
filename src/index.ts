@@ -1,31 +1,30 @@
-import { AccessOptions, Client, UploadOptions } from 'basic-ftp';
+import { AccessOptions, Client, FTPResponse, UploadOptions } from 'basic-ftp';
 import { join } from 'path';
 import { SavimProviderInterface } from 'savim';
-import { Readable, Stream } from 'stream';
+import { Readable, Stream, Writable } from 'stream';
 
 export type SavimFTPUploadFileParam = UploadOptions;
 
 export type SavimFTPProviderConfig = AccessOptions;
 
 export class SavimFTPProvider implements SavimProviderInterface {
-  name = 'ftp';
-  client = new Client();
+  constructor(
+    public config: SavimFTPProviderConfig,
+    public name = 'ftp',
+    public client = new Client(),
+  ) {}
 
-  constructor(public config: SavimFTPProviderConfig) {
-    this.client;
-  }
-
-  async isHealthy() {
+  async isHealthy(): Promise<boolean> {
     try {
       await this.client.access(this.config);
       await this.client.list();
       return true;
-    } catch (err) {
+    } catch {
       return false;
     }
   }
 
-  async getFile(filenameWithPath: string) {
+  async getFile(filenameWithPath: string): Promise<string> {
     const buf = new StringWriter();
 
     await this.client.downloadTo(buf, filenameWithPath);
@@ -37,35 +36,30 @@ export class SavimFTPProvider implements SavimProviderInterface {
     filenameWithPath: string,
     content: string | Buffer | Stream,
     params?: SavimFTPUploadFileParam,
-  ) {
+  ): Promise<FTPResponse> {
     let fileStream: Readable;
 
     if (Buffer.isBuffer(content)) {
       fileStream = Readable.from(content);
-    }
-
-    if (content instanceof Readable) {
+    } else if (content instanceof Readable) {
       fileStream = content;
+    } else {
+      fileStream = Readable.from(Buffer.from(content as string, 'utf8'));
     }
 
-    if (typeof content === 'string') {
-      fileStream = Readable.from(Buffer.from(content, 'utf8'));
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return this.client.uploadFrom(fileStream!, filenameWithPath, params);
+    return this.client.uploadFrom(fileStream, filenameWithPath, params);
   }
 
-  async deleteFile(filenameWithPath: string) {
+  async deleteFile(filenameWithPath: string): Promise<void> {
     await this.client.remove(filenameWithPath);
   }
 
-  async createFolder(filenameWithPath: string) {
+  async createFolder(filenameWithPath: string): Promise<void> {
     await this.client.ensureDir(filenameWithPath);
     await this.client.ensureDir('~');
   }
 
-  async deleteFolder(filenameWithPath: string) {
+  async deleteFolder(filenameWithPath: string): Promise<void> {
     await this.client.removeDir(filenameWithPath);
   }
 
@@ -83,17 +77,14 @@ export class SavimFTPProvider implements SavimProviderInterface {
 }
 
 // https://github.com/patrickjuchli/basic-ftp/blob/master/src/StringWriter.ts
-import { Writable } from 'stream';
-
 export class StringWriter extends Writable {
-  protected buf = Buffer.alloc(0);
+  protected buf: Buffer = Buffer.alloc(0);
 
   _write(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    chunk: Buffer | string | any,
-    _: string,
+    chunk: Buffer | string | unknown,
+    _encoding: string,
     callback: (error: Error | null) => void,
-  ) {
+  ): void {
     if (chunk instanceof Buffer) {
       this.buf = Buffer.concat([this.buf, chunk]);
       callback(null);
@@ -102,7 +93,7 @@ export class StringWriter extends Writable {
     }
   }
 
-  getText() {
+  getText(): string {
     return this.buf.toString('base64');
   }
 }
